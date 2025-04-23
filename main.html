@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ONIAㅣMAIN</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+      background: linear-gradient(180deg, #111 0%, #000 100%);
+      background-attachment: fixed;
+      color: #f0f0f0;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      color: #00bfff;
+      margin: 0;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    #stats div {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#stats div:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+
+    nav a:hover {
+      color: #00ffff;
+      transform: scale(1.05);
+    }
+
+    .review-box:hover {
+  transform: scale(1.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  cursor: pointer;
+}
+    
+    #main {
+      padding: 6rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    #main h2 {
+      font-size: 3rem;
+      line-height: 1.2;
+      font-weight: 800;
+      margin-bottom: 2rem;
+    }
+
+    .main-button {
+      background: white;
+      color: black;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+
+    .main-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+    iframe {
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+    }
+
+    .snow-dot {
+      position: fixed;
+      top: -10px;
+      background: white;
+      border-radius: 50%;
+      animation: fall linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+      }
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    a {
+      color: #00ffff;
+    }
+
+    #stats div {
+      flex: 1;
+      min-width: 300px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    #stats h3,
+    #stats p {
+      color: white;
+    }
+
+    #reviews {
+  margin-top: 16rem;
+  padding: 4rem 2rem;
+  height: 600px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+#reviews-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: scroll-up 30s linear infinite;
+}
+
+.reviews-marquee {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3개씩 정렬 */
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+header {
+  height: 100px;
+  background: url('your-background.jpg') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-box {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 90%;
+  max-width: 1000px;
+  padding: 16px 32px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  height: 50px;
+  object-fit: contain;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 24px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #ccc;
+}
+
+
+
+.review-box, .review-box-small {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  color: white;
+  position: relative;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.stars {
+  color: gold;
+  margin-bottom: 0.5rem;
+  display: block;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+
+    .review-box {
+      min-width: calc(33.333% - 1.333rem);
+    }
+
+    .review-box-small {
+      min-width: calc(25% - 1rem);
+    }
+
+    .review-box::before, .review-box-small::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background-color: #333;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .review-box p, .review-box-small p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    @keyframes scroll-up {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-box">
+      <img src="https://cdn.discordapp.com/attachments/1355887254878421164/1364496834155778078/20250420_013242.png?ex=6809e234&is=680890b4&hm=31780c576c2966397126abbfa117c26fd338bb39c7b9e918762b4a510f4ef002&" alt="로고" class="logo">
+      <nav>
+        <a href="main.html">MAIN</a>
+        <a href="buy.html">PRODUCTS</a>
+        <a href="status.html">STATE</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+    </div>
+  </header>
+  
+  
+
+  <section id="main">
+    <div style="flex: 1; min-width: 300px;">
+      <h2>Everything<br>you're looking for,<br>in only one place.</h2>
+      <a href="buy.html" class="main-button">VIEW OUR PRODUCTS</a>
+    </div>
+    <div style="flex: 1; min-width: 300px;">
+      <iframe src="https://www.youtube.com/embed/g0pz_w5ClBY" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section id="stats" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; padding: 4rem 2rem;">
+    <div>
+      <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">VERIFIED PRODUCTS</h3>
+      <p>All products are manufactured and verified in-house</p>
+    </div>
+    <div>
+      <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">VERIFIED CUSTOMERS</h3>
+      <p>Many customers and no manipulation customers</p>
+    </div>
+    <div>
+      <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">EXCEPTIONAL SUPPORT</h3>
+      <p>Get answers to your questions quickly and efficiently.</p>
+    </div>
+    
+  </section>
+
+  <section id="reviews">
+    <div id="reviews-wrapper">
+      <div class="reviews-marquee">
+        <!-- 반복 1 -->
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>스푸퍼가 다루는 스푸핑이 진짜 최고라 믿고 구매한 거 후회 안 합니다. 진짜 너무 만족스러워요.</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>제가 아수스 멘보인데 오니아 스푸퍼는 발로란트 스푸핑,클리닝까지 되서 정말 좋았궁 스톰님이 너무 친절하시고 섹시하시고 사랑하고 진짜 너무 좋았어요</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>업글 될때마다 신세계를 맛봤으며 프라임 스푸퍼는 진짜 매우 좋습니다.</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>요즘 스푸퍼 파는샾들은 주인장이 리셀만해서 오류나 그런 지식도없는데 여기는 물어볼때마다 다 알려주시고 잘풀리네요</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>무조건 스푸퍼는 여기서 사십쇼 저는 무조건 여기서만 살꺼에요 그냥 성능이 울트라 캡숑 지죤 입니다 굳굳 저는 담부터 여기서만 살꺼에요 하드밴 딜밴 그런건 싹다 속이 시원하게 풀립니다 무조건 무조건 여기서만 사세욤</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>타샵 스푸퍼 써봤는데 한개도 안풀렸는데 여기는 클릭하자 마자 바로 풀렸네요 진짜 만족합니다. 다 필요 없고 무조건 여기서 사세요</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>다른 스푸퍼보다 빠르고 싸게 풀었습니다 감사합니다</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>사용법이 간편하고 작동 잘되고 잘 알려주셨습니다 다음에도 이용하겠습니다</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>하드밴 먹어서 정말 답답하고 힘들었는데 사장님께서 정말 친절하시고 제가 본 디코 상점중에 가장 깔끔하고 친절한 곳이라고 생각합니다 다음에도 또 이용하고 싶습니다</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>답장도 빠르시고 직원들도 다 친절하고 모르는거 물어봐도 잘 알려주십니다 구매 강추</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>발로란트 하드밴먹고나서 너무 급했는데 직원분들 답장 엄청 빠르시고 스푸퍼 적용법도 알려주시고 엄청 착하시네요 모르는거도 많이 물어봐서 답장 안해줄까봐 무서웠는데 답장 다 해주셔요</p>
+        </div>
+        
+      </div>
+      <div class="reviews-marquee">
+        <!-- 반복 2 (동일한 내용 복사) -->
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>스푸퍼가 다루는 스푸핑이 진짜 최고라 믿고 구매한 거 후회 안 합니다. 진짜 너무 만족스러워요.</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>제가 아수스 멘보인데 오니아 스푸퍼는 발로란트 스푸핑,클리닝까지 되서 정말 좋았궁 스톰님이 너무 친절하시고 섹시하시고 사랑하고 진짜 너무 좋았어요</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>업글 될때마다 신세계를 맛봤으며 프라임 스푸퍼는 진짜 매우 좋습니다.</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>요즘 스푸퍼 파는샾들은 주인장이 리셀만해서 오류나 그런 지식도없는데 여기는 물어볼때마다 다 알려주시고 잘풀리네요</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>무조건 스푸퍼는 여기서 사십쇼 저는 무조건 여기서만 살꺼에요 그냥 성능이 울트라 캡숑 지죤 입니다 굳굳 저는 담부터 여기서만 살꺼에요 하드밴 딜밴 그런건 싹다 속이 시원하게 풀립니다 무조건 무조건 여기서만 사세욤</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>타샵 스푸퍼 써봤는데 한개도 안풀렸는데 여기는 클릭하자 마자 바로 풀렸네요 진짜 만족합니다. 다 필요 없고 무조건 여기서 사세요</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>다른 스푸퍼보다 빠르고 싸게 풀었습니다 감사합니다</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>사용법이 간편하고 작동 잘되고 잘 알려주셨습니다 다음에도 이용하겠습니다</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>하드밴 먹어서 정말 답답하고 힘들었는데 사장님께서 정말 친절하시고 제가 본 디코 상점중에 가장 깔끔하고 친절한 곳이라고 생각합니다 다음에도 또 이용하고 싶습니다</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>답장도 빠르시고 직원들도 다 친절하고 모르는거 물어봐도 잘 알려주십니다 구매 강추</p>
+        </div>
+        
+        <div class="review-box">
+          <span class="stars">★★★★★</span>
+          <p>발로란트 하드밴먹고나서 너무 급했는데 직원분들 답장 엄청 빠르시고 스푸퍼 적용법도 알려주시고 엄청 착하시네요 모르는거도 많이 물어봐서 답장 안해줄까봐 무서웠는데 답장 다 해주셔요</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    &copy; 2025 오니아. 모든 권리 보유. | <a href="https://discord.gg/fyq8Cb34Jq">공식 디스코드 참여</a>
+  </div>
+
+  <script>
+    const snowCount = 80;
+    for (let i = 0; i < snowCount; i++) {
+      const snow = document.createElement("div");
+      snow.classList.add("snow-dot");
+      const size = Math.random() * 6 + 2;
+      snow.style.width = size + "px";
+      snow.style.height = size + "px";
+      snow.style.left = Math.random() * 100 + "vw";
+      snow.style.animationDuration = 3 + Math.random() * 5 + "s";
+      snow.style.animationDelay = Math.random() * 5 + "s";
+      snow.style.opacity = Math.random() * 0.8 + 0.2;
+      document.body.appendChild(snow);
+    }
+  </script>
+</body>
+</html>
